@@ -1,0 +1,10 @@
+create term id for courses.---
+
+that way courses are connected to terms.---
+
+then add course ids to assessments.--
+
+therfore assessments created are for specific courses.--
+
+Delete Term if course list getTermId is empty!
+
