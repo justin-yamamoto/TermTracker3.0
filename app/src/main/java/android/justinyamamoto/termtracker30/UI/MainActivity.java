@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
+import android.justinyamamoto.termtracker30.Entities.Course;
 import android.justinyamamoto.termtracker30.Entities.Term;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Repository repo = new Repository(getApplication());
+
+        //Course course1 = new Course(1,"Mobile","01/11/1991","02/01/1992","In Progress", "Fake Name","808-610-0396","Fake@email.com","n/a",1);
+       // repo.insert(course1);
 /**
         Term term1 = new Term(1,"Term 1","02/01/2020","03/01/2020");
         repo.insert(term1);*/

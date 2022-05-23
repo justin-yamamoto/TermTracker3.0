@@ -156,6 +156,18 @@ public class Repository {
             e.printStackTrace();
         }
     }
+/**Delete Course by Id. */
+    public void deleteCourse(int courseId){
+
+        databaseExecutor.execute(()->{
+            mCourseDAO.deleteCourse(courseId);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
 
     /**Get all Assessments. */
     public List<Assessment>getAllAssessments(){

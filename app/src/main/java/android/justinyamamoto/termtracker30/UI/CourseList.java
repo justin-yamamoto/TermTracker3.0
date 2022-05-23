@@ -9,6 +9,7 @@ import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.Entities.Course;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -58,7 +59,7 @@ public class CourseList extends AppCompatActivity {
         //Set RecyclerView
         RecyclerView recyclerView = findViewById(R.id.courseRecycleView);
         r = new Repository(getApplication());
-        List<Course> courses = r.findCourseById(courseId);  //load courses by termId
+        List<Course> courses = r.findCourseById(termId);  //load courses by termId
         final CourseAdapter adapter = new CourseAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,9 +76,31 @@ public class CourseList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**Call menu item. */
+    public boolean onCreateOptionsMenu(Menu menu){
+        //get menu
+        getMenuInflater().inflate(R.menu.menu_courselist, menu);
+        return true;
+    }
+
     public void goToAddCourse(View view) {
         Intent i = new Intent(this,CourseAdd.class);
         i.putExtra("termId",termId);
+        startActivity(i);
+    }
+
+    public void goToTermDetails(MenuItem item) {
+        Intent i = new Intent(this,TermDetail.class);
+        i.putExtra("termId",termId);
+        i.putExtra("termName",termName);
+        i.putExtra("termStartDate",termStart);
+        i.putExtra("termEndDate",termEnd);
+        startActivity(i);
+    }
+
+    public void deleteTerm(MenuItem item) {
+        r.deleteTerm(termId);
+        Intent i = new Intent(this,TermList.class);
         startActivity(i);
     }
 }
