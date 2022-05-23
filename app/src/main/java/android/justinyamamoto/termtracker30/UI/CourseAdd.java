@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
+import android.view.View;
 
 public class CourseAdd extends AppCompatActivity {
 
@@ -11,5 +12,11 @@ public class CourseAdd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_add);
+    }
+
+    public void checkRadio(View view) {
+    }
+
+    public void saveCourse(View view) {
     }
 }

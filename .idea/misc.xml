@@ -3,12 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1935" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_course_add.xml" value="0.353713768115942" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_course_detail.xml" value="0.353713768115942" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_course_edit.xml" value="0.353713768115942" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_course_list.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_main.xml" value="0.353713768115942" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_term_adapter.xml" value="0.353713768115942" />
         <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_term_add.xml" value="0.353713768115942" />
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/activity_term_list.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/course_list_item.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/layout/term_list_item.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/kailu/OneDrive/WGU/mobile development/app/src/main/res/menu/courselist.xml" value="0.14791666666666667" />
       </map>
     </option>
   </component>

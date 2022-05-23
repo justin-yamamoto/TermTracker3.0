@@ -2,14 +2,29 @@ package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.justinyamamoto.termtracker30.Database.Repository;
+import android.justinyamamoto.termtracker30.Entities.Term;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Repository repo = new Repository(getApplication());
+/**
+        Term term1 = new Term(1,"Term 1","02/01/2020","03/01/2020");
+        repo.insert(term1);*/
+    }
+
+    public void goToTermPage(View view) {
+        Intent intent = new Intent (this,TermList.class);
+        startActivity(intent);
     }
 }
