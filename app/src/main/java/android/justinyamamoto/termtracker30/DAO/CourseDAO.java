@@ -33,5 +33,9 @@ public interface CourseDAO {
         @Query("DELETE FROM courses WHERE courseId=:courseId")
         void deleteCourse(int courseId);
 
+       // @Query("UPDATE courses SET courseName='courseName',courseStartDate=:courseStartDate,courseEndDate=:courseEndDate,courseStatus=:courseStatus,instructorName=:instructorName,phone=:phone,email=:email,notes=:notes,termId=:termId WHERE courseId= 'courseId' )
+            //    void updateCourseById (int courseId,String courseName,String courseStartDate, String courseEndDate,String courseStatus,String instructorName,String phone, String email,String notes,int termId);
 
+        @Query("UPDATE courses SET courseName=:courseName,courseStartDate=:courseStartDate,courseEndDate=:courseEndDate, courseStatus=:courseStatus,instructorName=:instructorName,phone=:phone,email=:email,notes =:notes, termId=:termId  WHERE courseId=:courseId")
+        void updateCourseById(int courseId,String courseName,String courseStartDate,String courseEndDate,String courseStatus,String instructorName,String phone,String email,String notes,int termId);
     }

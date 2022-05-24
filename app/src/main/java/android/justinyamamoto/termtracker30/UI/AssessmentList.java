@@ -74,6 +74,10 @@ public class AssessmentList extends AppCompatActivity {
         aListEmailTv = findViewById(R.id.aListEmailTv);
         aListEmailTv.setText(email);
 
+        notes = getIntent().getStringExtra("notes");
+
+        termId = getIntent().getIntExtra("termId",-1);
+
     }
 
     /**Return to previous activity. */
@@ -95,12 +99,34 @@ public class AssessmentList extends AppCompatActivity {
 
     public void goToCourseDetails(MenuItem item) {
         Intent i = new Intent(this,CourseDetail.class);
+        //send course data to course detail
+        i.putExtra("courseId",courseId);
+        i.putExtra("courseName",courseName);
+        i.putExtra("courseStartDate",courseStartDate);
+        i.putExtra("courseEndDate",courseEndDate);
+        i.putExtra("courseStatus",courseStatus);
+        i.putExtra("instructorName",instructorName);
+        i.putExtra("phone",phone);
+        i.putExtra("email",email);
+        i.putExtra("notes",notes);
 
         startActivity(i);
     }
 
     public void goToEditCourse(MenuItem item) {
         Intent i = new Intent(this,CourseEdit.class);
+
+        //send course data to course edit
+        i.putExtra("courseId",courseId);
+        i.putExtra("courseName",courseName);
+        i.putExtra("courseStartDate",courseStartDate);
+        i.putExtra("courseEndDate",courseEndDate);
+        i.putExtra("courseStatus",courseStatus);
+        i.putExtra("instructorName",instructorName);
+        i.putExtra("phone",phone);
+        i.putExtra("email",email);
+        i.putExtra("notes",notes);
+        i.putExtra("termId",termId);
 
         startActivity(i);
     }

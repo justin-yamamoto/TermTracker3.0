@@ -156,11 +156,24 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
 /**Delete Course by Id. */
     public void deleteCourse(int courseId){
 
         databaseExecutor.execute(()->{
             mCourseDAO.deleteCourse(courseId);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCourseById(int courseId,String courseName,String courseStartDate,String courseEndDate,String courseStatus,String instructorName,String phone,String email,String notes,int termId){
+
+        databaseExecutor.execute(()->{
+            mCourseDAO.updateCourseById(courseId,courseName,courseStartDate,courseEndDate,courseStatus,instructorName,phone,email,notes,termId);
         });
         try{
             Thread.sleep(1000);
