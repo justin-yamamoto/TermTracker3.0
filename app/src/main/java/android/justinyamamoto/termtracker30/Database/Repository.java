@@ -224,17 +224,17 @@ public class Repository {
     public void insert(Assessment assessment){
 
         databaseExecutor.execute(()->{
-            mAssessmentDAO.insertAssessment(assessment);
+            mAssessmentDAO.insert(assessment);
         });
         try{
             Thread.sleep(1000);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        mAssessmentDAO.insertAssessment(assessment);
+        mAssessmentDAO.insert(assessment);
     }
 
-    /**Update a Term. */
+    /**Update a Assessment. */
     public void update(Assessment assessment){
         databaseExecutor.execute(()->{
             mAssessmentDAO.updateAssessment(assessment);
@@ -253,6 +253,17 @@ public class Repository {
             mAssessmentDAO.deleteAssessment(assessment);
         });
         try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateAssessmentById(int assessmentId,String assessmentName,String assessmentStartDate,String assessmentEndDate,String assessmentType,int courseId){
+
+        databaseExecutor.execute(()->{
+            mAssessmentDAO.updateAssessmentById(assessmentId,assessmentName,assessmentStartDate,assessmentEndDate,assessmentType,courseId);
+        });
+        try{
             Thread.sleep(1000);
         }catch (InterruptedException e){
             e.printStackTrace();

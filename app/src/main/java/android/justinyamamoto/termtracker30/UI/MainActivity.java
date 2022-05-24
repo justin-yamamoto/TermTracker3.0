@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
+import android.justinyamamoto.termtracker30.Entities.Assessment;
 import android.justinyamamoto.termtracker30.Entities.Course;
 import android.justinyamamoto.termtracker30.Entities.Term;
 import android.justinyamamoto.termtracker30.R;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
       // Term term1 = new Term(1,"Term 1","02/01/2020","03/01/2020");
        // repo.insert(term1);
+
+        //Assessment assessment1 = new Assessment(1,"Mobile App","01/01/2020","01/30/2020","Performance",1);
+        //repo.insert(assessment1);
     }
 
     public void goToTermPage(View view) {

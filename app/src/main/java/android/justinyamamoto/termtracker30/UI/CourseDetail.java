@@ -2,9 +2,11 @@ package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -82,5 +84,21 @@ public class CourseDetail extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    /**Call menu item. */
+    public boolean onCreateOptionsMenu(Menu menu){
+        //get menu
+        getMenuInflater().inflate(R.menu.menu_coursedetails, menu);
+        return true;
+    }
+/**Share Notes on click of share notes menu item. */
+    public void shareNotes(MenuItem item) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,notes);
+        sendIntent.putExtra(Intent.EXTRA_TITLE,"Course Notes");
+        sendIntent.setType("text/plain");
+        Intent shareIntent=Intent.createChooser(sendIntent,null);
+        startActivity(shareIntent);
     }
 }

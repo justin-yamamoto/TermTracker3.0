@@ -1,14 +1,20 @@
 package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
+import android.justinyamamoto.termtracker30.Entities.Assessment;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class AssessmentList extends AppCompatActivity {
 
@@ -78,6 +84,15 @@ public class AssessmentList extends AppCompatActivity {
 
         termId = getIntent().getIntExtra("termId",-1);
 
+        //set recycler
+        RecyclerView recyclerView = findViewById(R.id.assessmentRecyclerView);
+        Repository repo = new Repository(getApplication());
+        List<Assessment> assessments = repo.findAssessmentById(courseId);
+        final AssessmentAdapter adapter = new AssessmentAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setAssessments(assessments);
+
     }
 
     /**Return to previous activity. */
@@ -137,5 +152,12 @@ public class AssessmentList extends AppCompatActivity {
 
         startActivity(i);
 
+    }
+
+    public void goToAddAssessment(View view) {
+        Intent i = new Intent(this,AssessmentAdd.class);
+        i.putExtra("courseId",courseId);
+
+        startActivity(i);
     }
 }

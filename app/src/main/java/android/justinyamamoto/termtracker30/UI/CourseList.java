@@ -1,13 +1,18 @@
 package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.Entities.Course;
 import android.justinyamamoto.termtracker30.R;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -99,8 +104,36 @@ public class CourseList extends AppCompatActivity {
     }
 
     public void deleteTerm(MenuItem item) {
-        r.deleteTerm(termId);
-        Intent i = new Intent(this,TermList.class);
-        startActivity(i);
+        //r.deleteTerm(termId);
+        //Intent i = new Intent(this,TermList.class);
+       //startActivity(i);
+
+        List<Course> courses = r.getAllCourses();
+
+        for (Course course : courses){
+            if (course.getTermId()!=termId){
+
+                r.deleteTerm(termId);
+                Intent intent = new Intent (this,TermList.class);
+                startActivity(intent);
+            }
+            if (course.getTermId()==termId){
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CourseList.this,"Notify");
+                builder.setContentTitle("Alert!!!");
+                builder.setContentText("Cannot Delete Term With Courses Associated to it.");
+                builder.setSmallIcon(R.drawable.ic_launcher_background);
+                builder.setAutoCancel(true);
+
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CourseList.this);
+                managerCompat.notify(1, builder.build());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    NotificationChannel channel = new NotificationChannel("Notify", "blah blah", NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(channel);
+                }
+
+            }
+
+        }
     }
 }
