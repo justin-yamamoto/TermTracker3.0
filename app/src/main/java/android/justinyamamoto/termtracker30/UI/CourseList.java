@@ -110,6 +110,7 @@ public class CourseList extends AppCompatActivity {
         Intent i = new Intent(this,TermList.class);
         startActivity(i);
 
+
      /**   List<Course> courses1 = r.getAllCourses();
 
         termId= termIdTv.getId();
