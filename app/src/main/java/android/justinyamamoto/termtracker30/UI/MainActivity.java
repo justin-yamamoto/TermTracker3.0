@@ -13,6 +13,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int DateAlert;
+
 
 
     @Override

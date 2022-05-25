@@ -3,4 +3,10 @@
 
     <item android:title="Share Notes"
         android:onClick="shareNotes"/>
+    <item
+
+        android:title="Start Date Notification"
+        android:onClick="courseStartNotify"/>
+    <item android:title="End Date Notification"
+        android:onClick="courseEndNotify"/>
 </menu>

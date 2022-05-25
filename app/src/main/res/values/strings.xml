@@ -13,4 +13,6 @@
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="plan_to_take">Plan To Take</string>
+    <string name="channel_name">mychannel</string>
+    <string name="channel_description">mychanneldescription</string>
 </resources>

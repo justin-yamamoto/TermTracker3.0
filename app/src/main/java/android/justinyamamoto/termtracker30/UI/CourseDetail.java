@@ -2,6 +2,9 @@ package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.R;
@@ -9,6 +12,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class CourseDetail extends AppCompatActivity {
 
@@ -30,6 +38,8 @@ public class CourseDetail extends AppCompatActivity {
     TextView detailPhone;
     TextView detailEmail;
     TextView detailNotes;
+
+    SimpleDateFormat sdf;
 
     Repository r;
 
@@ -91,14 +101,58 @@ public class CourseDetail extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_coursedetails, menu);
         return true;
     }
+
 /**Share Notes on click of share notes menu item. */
     public void shareNotes(MenuItem item) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT,notes);
-        sendIntent.putExtra(Intent.EXTRA_TITLE,"Course Notes");
+        sendIntent.putExtra(Intent.EXTRA_TITLE,courseName + " Notes ");
         sendIntent.setType("text/plain");
         Intent shareIntent=Intent.createChooser(sendIntent,null);
         startActivity(shareIntent);
+    }
+
+
+    public void courseStartNotify(MenuItem item) {
+        courseStartDate = detailCStart.getText().toString();
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        Date sDate = null;
+        try{
+            sDate = format.parse(courseStartDate);
+
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        Long sTrigger = sDate.getTime();
+
+        Intent i = new Intent(CourseDetail.this,MyReceiver.class);
+        i.putExtra("key",courseName + " Starts " + courseStartDate);
+        PendingIntent sSender = PendingIntent.getBroadcast(CourseDetail.this,MainActivity.DateAlert++,i,PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,sTrigger,sSender);
+    }
+
+    public void courseEndNotify(MenuItem item) {
+
+        courseEndDate = detailCEnd.getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+
+        Date eDate = null;
+        try{
+
+             eDate = format.parse(courseEndDate);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        Long eTrigger = eDate.getTime();
+
+
+        Intent i = new Intent(CourseDetail.this,MyReceiver.class);
+        i.putExtra("key",courseName + " Ends Today");
+        PendingIntent sSender = PendingIntent.getBroadcast(CourseDetail.this,MainActivity.DateAlert++,i,PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,eTrigger,sSender);
     }
 }
