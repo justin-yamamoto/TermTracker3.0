@@ -57,13 +57,23 @@ public class TermAdd extends AppCompatActivity {
         termEndDateEt = findViewById(R.id.addTermEndDateEt);
         termEndDate = termEndDateEt.getText().toString();
 
-        if (termId == -1){
-            int newId = r.getAllTerms().get(r.getAllTerms().size()-1).getTermId()+1;
-            Term term = new Term(newId,termName,termStartDate,termEndDate);
-             r.insert(term);
 
-             Intent i = new Intent(this,TermList.class);
-             startActivity(i);
-        }
+      if (r.getAllTerms().isEmpty()){
+          termId =1;
+          Term term = new Term(termId,termName,termStartDate,termEndDate);
+          r.insert(term);
+
+          Intent i = new Intent(this,TermList.class);
+          startActivity(i);
+
+      }
+      else{
+          int newId = r.getAllTerms().get(r.getAllTerms().size()-1).getTermId()+1;
+          Term term = new Term(newId,termName,termStartDate,termEndDate);
+          r.insert(term);
+
+          Intent i = new Intent(this,TermList.class);
+          startActivity(i);
+      }
     }
 }

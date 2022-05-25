@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Repository repo = new Repository(getApplication());
 
-       // Course course1 = new Course(1,"Mobile","01/11/1991","02/01/1992","In Progress", "Fake Name","808-610-0396","Fake@email.com","n/a",1);
+       // Course course1 = new Course(1,"Demo Course","01/11/2023","02/01/2024","In Progress", "Fake Name","808-610-0396","Fake@email.com","n/a",1);
         //repo.insert(course1);
 
-      // Term term1 = new Term(1,"Term 1","02/01/2020","03/01/2020");
-       // repo.insert(term1);
+     //Term term1 = new Term(1,"Demo term","05/25/2022","11/25/2022");
+       //repo.insert(term1);
 
-        //Assessment assessment1 = new Assessment(1,"Mobile App","01/01/2020","01/30/2020","Performance",1);
+       // Assessment assessment1 = new Assessment(1,"Mobile App","01/01/2020","01/30/2020","Performance",1);
         //repo.insert(assessment1);
     }
 

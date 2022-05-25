@@ -30,12 +30,14 @@ public class AssessmentAdd extends AppCompatActivity {
     RadioButton addAssessmentPerformanceRBtn;
     RadioButton addAssessmentObjectiveRBtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_add);
         //Menu back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        r = new Repository(getApplication());
 
     }
 
@@ -53,6 +55,7 @@ public class AssessmentAdd extends AppCompatActivity {
     }
 
     public void saveAssessment(View view) {
+
         assessmentId = getIntent().getIntExtra("assessmentId",-1);
 
         addAssessmentName = findViewById(R.id.addAssessmentName);
@@ -73,19 +76,20 @@ public class AssessmentAdd extends AppCompatActivity {
 
         courseId = getIntent().getIntExtra("courseId",-1);
 
-        if (assessmentId ==-1){
-            int newId = r.getAllAssessments().get(r.getAllAssessments().size()-1).getAssessmentId()+1;
-            Assessment assessment = new Assessment(newId,assessmentName,assessmentStartDate,assessmentEndDate,assessmentType,courseId);
-            r.insert(assessment);
-            r = new Repository(getApplication());
-            //Intent i = new Intent(this,TermList.class);
+            if (r.getAllAssessments().isEmpty()){
+                assessmentId=1;
+                Assessment assessment = new Assessment(assessmentId,assessmentName,assessmentStartDate,assessmentEndDate,assessmentType,courseId);
+                r.insert(assessment);
+            }
+            else{
+                int newId = r.getAllAssessments().get(r.getAllAssessments().size()-1).getAssessmentId()+1;
+                Assessment assessment = new Assessment(newId,assessmentName,assessmentStartDate,assessmentEndDate,assessmentType,courseId);
+                r.insert(assessment);
 
-           // startActivity(i);
+            }
+
 
         }
 
-
-
-    }
 
 }

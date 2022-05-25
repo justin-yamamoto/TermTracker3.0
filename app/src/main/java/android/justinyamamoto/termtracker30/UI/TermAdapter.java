@@ -69,9 +69,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
             holder.termItemView.setText(termId +": " +termName  + "\n" + "Start Date: " + termStartDate + "\n" + "End Date: " + termEndDate);
 
-
         }
-        else{
+        if (mTerms==null){
             holder.termItemView.setText("No Term Information");
         }
 

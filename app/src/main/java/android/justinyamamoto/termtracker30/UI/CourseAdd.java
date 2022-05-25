@@ -101,12 +101,14 @@ public class CourseAdd extends AppCompatActivity {
 
         }
 
-
-        if (courseId==-1){
+        if (r.getAllCourses().isEmpty()){
+            courseId=1;
+            Course course = new Course(courseId,courseName,courseStartDate,courseEndDate,courseStatus,instructorName,phone,email,notes,termId);
+            r.insert(course);
+        }else{
             int newId = r.getAllCourses().get(r.getAllCourses().size()-1).getCourseId()+1;
             Course course = new Course(newId,courseName,courseStartDate,courseEndDate,courseStatus,instructorName,phone,email,notes,termId);
             r.insert(course);
-
         }
 
     }

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseList extends AppCompatActivity {
@@ -104,18 +105,21 @@ public class CourseList extends AppCompatActivity {
     }
 
     public void deleteTerm(MenuItem item) {
-        //r.deleteTerm(termId);
-        //Intent i = new Intent(this,TermList.class);
-       //startActivity(i);
+        int termId1 = getIntent().getIntExtra("termId",-1);
+        r.deleteTerm(termId1);
+        Intent i = new Intent(this,TermList.class);
+        startActivity(i);
 
-        List<Course> courses = r.getAllCourses();
+     /**   List<Course> courses1 = r.getAllCourses();
 
-        for (Course course : courses){
+        termId= termIdTv.getId();
+
+        for (Course course : courses1){
             if (course.getTermId()!=termId){
 
                 r.deleteTerm(termId);
-                Intent intent = new Intent (this,TermList.class);
-                startActivity(intent);
+               // Intent intent = new Intent (this,TermList.class);
+               // startActivity(intent);
             }
             if (course.getTermId()==termId){
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(CourseList.this,"Notify");
@@ -134,6 +138,7 @@ public class CourseList extends AppCompatActivity {
 
             }
 
-        }
+        }*/
+
     }
 }

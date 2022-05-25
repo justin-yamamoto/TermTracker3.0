@@ -10,6 +10,7 @@ public class Term {
 
     @PrimaryKey(autoGenerate = true)
     private int termId;
+
     private String termName;
     private String termStartDate;
     private String termEndDate;

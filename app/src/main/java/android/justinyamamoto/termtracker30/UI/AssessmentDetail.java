@@ -2,6 +2,9 @@ package android.justinyamamoto.termtracker30.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.R;
@@ -9,6 +12,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class AssessmentDetail extends AppCompatActivity {
     Repository r;
@@ -91,5 +99,46 @@ public class AssessmentDetail extends AppCompatActivity {
         Intent i = new Intent(this,TermList.class);
 
         startActivity(i);
+    }
+
+    public void assessmentStartNotify(MenuItem item) {
+        assessmentStartDate = aDetailStart.getText().toString();
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        Date sDate = null;
+        try{
+            sDate = format.parse(assessmentStartDate);
+
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        Long sTrigger = sDate.getTime();
+
+        Intent i = new Intent(AssessmentDetail.this,MyReceiver.class);
+        i.putExtra("key",assessmentName + " Starts " + assessmentStartDate);
+        PendingIntent sSender = PendingIntent.getBroadcast(AssessmentDetail.this,MainActivity.DateAlert++,i,PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,sTrigger,sSender);
+    }
+
+    public void assessmentEndNotify(MenuItem item) {
+        assessmentEndDate = aDetailEnd.getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+
+        Date eDate = null;
+        try{
+
+            eDate = format.parse(assessmentEndDate);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        Long eTrigger = eDate.getTime();
+
+
+        Intent i = new Intent(AssessmentDetail.this,MyReceiver.class);
+        i.putExtra("key",assessmentName + " Ends " + assessmentEndDate);
+        PendingIntent sSender = PendingIntent.getBroadcast(AssessmentDetail.this,MainActivity.DateAlert++,i,PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,eTrigger,sSender);
     }
 }

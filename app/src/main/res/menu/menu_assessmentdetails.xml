@@ -5,4 +5,8 @@
         android:onClick="goToEditAssessment"/>
     <item android:title="Delete Assessment"
         android:onClick="deleteAssessment"/>
+    <item android:title="Start Date Notification"
+        android:onClick="assessmentStartNotify"/>
+    <item android:title="End Date Notification"
+        android:onClick="assessmentEndNotify"/>
 </menu>

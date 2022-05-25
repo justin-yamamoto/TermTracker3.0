@@ -8,6 +8,7 @@ import android.justinyamamoto.termtracker30.Entities.Assessment;
 import android.justinyamamoto.termtracker30.Entities.Course;
 import android.justinyamamoto.termtracker30.Entities.Term;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -220,14 +221,14 @@ public class Repository {
         }
     }
 
-    /**Insert a term. */
+    /**Insert a assessment. */
     public void insert(Assessment assessment){
 
         databaseExecutor.execute(()->{
             mAssessmentDAO.insert(assessment);
         });
         try{
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }catch (InterruptedException e){
             e.printStackTrace();
         }

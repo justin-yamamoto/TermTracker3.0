@@ -15,6 +15,7 @@ import android.view.View;
 import java.util.List;
 
 public class TermList extends AppCompatActivity {
+    int termId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class TermList extends AppCompatActivity {
         setContentView(R.layout.activity_term_list);
         //Menu back arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        termId = -1;
 
         // set to Review
         RecyclerView recyclerView = findViewById(R.id.termRecycleView);
@@ -46,6 +49,8 @@ public class TermList extends AppCompatActivity {
     public void goToAddTerm(View view) {
 
         Intent intent = new Intent (this,TermAdd.class);
+
+        intent.putExtra("termId",termId);
 
 
         startActivity(intent);
