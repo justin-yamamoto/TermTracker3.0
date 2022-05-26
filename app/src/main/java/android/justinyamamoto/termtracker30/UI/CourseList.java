@@ -6,11 +6,13 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.justinyamamoto.termtracker30.Database.Repository;
 import android.justinyamamoto.termtracker30.Entities.Course;
+import android.justinyamamoto.termtracker30.Entities.Term;
 import android.justinyamamoto.termtracker30.R;
 import android.os.Build;
 import android.os.Bundle;
@@ -105,24 +107,31 @@ public class CourseList extends AppCompatActivity {
     }
 
     public void deleteTerm(MenuItem item) {
-        int termId1 = getIntent().getIntExtra("termId",-1);
+      /**  int termId1 = getIntent().getIntExtra("termId",-1);
         r.deleteTerm(termId1);
         Intent i = new Intent(this,TermList.class);
-        startActivity(i);
+        startActivity(i);*/
 
 
-     /**   List<Course> courses1 = r.getAllCourses();
+       List<Course> courses = r.getAllCourses();
 
-        termId= termIdTv.getId();
 
-        for (Course course : courses1){
+        for (Course course : courses){
             if (course.getTermId()!=termId){
 
                 r.deleteTerm(termId);
-               // Intent intent = new Intent (this,TermList.class);
-               // startActivity(intent);
+                Intent intent = new Intent (this,TermList.class);
+                startActivity(intent);
             }
-            if (course.getTermId()==termId){
+            else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(CourseList.this);
+                builder.setMessage("All Associated Courses Must be Deleted First").setNegativeButton("Ok",null);
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+           /** if (course.getTermId()==termId){
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(CourseList.this,"Notify");
                 builder.setContentTitle("Alert!!!");
                 builder.setContentText("Cannot Delete Term With Courses Associated to it.");
@@ -137,9 +146,15 @@ public class CourseList extends AppCompatActivity {
                     manager.createNotificationChannel(channel);
                 }
 
-            }
+            }*/
 
-        }*/
+        }
+
+
+
+
+
+
 
     }
 }
