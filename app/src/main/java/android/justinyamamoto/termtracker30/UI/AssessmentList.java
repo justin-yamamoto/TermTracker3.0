@@ -148,6 +148,7 @@ public class AssessmentList extends AppCompatActivity {
 
     public void deleteCourse(MenuItem item) {
         r.deleteCourse(courseId);
+        r.deleteAssessment(courseId);
         Intent i = new Intent(this,TermList.class);
 
         startActivity(i);
